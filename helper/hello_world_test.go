@@ -62,7 +62,15 @@ func TestSkipHelloWorld(t *testing.T) {
 }
 
 func BenchmarkHelloWorld(b *testing.B) {
-	for i := 0; i < b.N; i++ {
-		HelloWorld("Abdul")
-	}
+	b.Run("Abdul", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWorld("Abdul")
+		}
+	})
+
+	b.Run("Rizki", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWorld("Rizki")
+		}
+	})
 }
