@@ -19,17 +19,33 @@ func TestMain(m *testing.M) {
 }
 
 func TestAllHelloWorld(t *testing.T) {
-	t.Run("Hello Abdul", func(t *testing.T) {
-		result := HelloWorld("Abdul")
-		assert.Equal(t, "Hello Abdul", result, "Result is not 'Hello Abdul")
+	tests := []struct {
+		name, request, expected string
+	}{
+		{
+			name:     "HelloWorld(Abdul)",
+			request:  "Abdul",
+			expected: "Hello Abdul",
+		},
+		{
+			name:     "HelloWorld(Rizki)",
+			request:  "Rizki",
+			expected: "Hello Rizki",
+		},
+		{
+			name:     "HelloWorld(Hafshoh)",
+			request:  "Hafshoh",
+			expected: "Hello Hafshoh",
+		},
+	}
 
-	})
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			result := HelloWorld(test.request)
+			assert.Equal(t, test.expected, result, "Result is not 'Hello Abdul")
 
-	t.Run("Hello Rizki", func(t *testing.T) {
-		result := HelloWorld("Rizki")
-		assert.Equal(t, "Hello Rizki", result, "Result is not 'Hello Rizki")
-
-	})
+		})
+	}
 }
 
 func TestHelloWorld(t *testing.T) {
