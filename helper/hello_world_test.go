@@ -62,15 +62,29 @@ func TestSkipHelloWorld(t *testing.T) {
 }
 
 func BenchmarkHelloWorld(b *testing.B) {
-	b.Run("Abdul", func(b *testing.B) {
-		for i := 0; i < b.N; i++ {
-			HelloWorld("Abdul")
-		}
-	})
+	benchmarks := []struct {
+		name, request, expected string
+	}{
+		{
+			name:    "HelloWorld(Abdul)",
+			request: "Abdul",
+		},
+		{
+			name:    "HelloWorld(Rizki)",
+			request: "Rizki",
+		},
+		{
+			name:    "HelloWorld(Hafshoh)",
+			request: "Hafshoh",
+		},
+	}
 
-	b.Run("Rizki", func(b *testing.B) {
-		for i := 0; i < b.N; i++ {
-			HelloWorld("Rizki")
-		}
-	})
+	for _, benchmark := range benchmarks {
+		b.Run(benchmark.name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				HelloWorld(benchmark.request)
+			}
+		})
+	}
+
 }
