@@ -60,3 +60,9 @@ func TestSkipHelloWorld(t *testing.T) {
 	result := HelloWorld("OS")
 	assert.Equal(t, "Hello OS", result, "Result is not 'Hello OS")
 }
+
+func BenchmarkHelloWorld(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		HelloWorld("Abdul")
+	}
+}
