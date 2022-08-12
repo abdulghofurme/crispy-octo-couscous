@@ -1,10 +1,12 @@
 package helper
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func TestHelloWorld(t *testing.T) {
 	result := HelloWorld("Abdul")
-	if result != "Hi Abdul" {
-		t.Fatal("Result is not 'Hello Abdul")
-	}
+	assert.Equal(t, "Hello Abdul", result, "Result is not 'Hello Abdul")
 }
