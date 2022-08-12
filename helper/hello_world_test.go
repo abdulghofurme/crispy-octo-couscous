@@ -1,11 +1,22 @@
 package helper
 
 import (
+	"fmt"
 	"runtime"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
+
+func TestMain(m *testing.M) {
+	// before
+	fmt.Println("BEFORE UNIT TEST")
+
+	m.Run()
+
+	// before
+	fmt.Println("AFTER UNIT TEST")
+}
 
 func TestHelloWorld(t *testing.T) {
 	result := HelloWorld("Abdul")
